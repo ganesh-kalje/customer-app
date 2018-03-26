@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+interface Config {
+  heroesUrl: string;
+  textfile: string;
+}
+
 @Injectable()
 export class ConfigServiceService {
 
@@ -9,7 +14,11 @@ export class ConfigServiceService {
 
 
   getData() {
-    return this.http.get(this.configUrl);
+    return this.http.get<Config>(this.configUrl);
   }
 
+  getAllDataWithHeaders() : Observable<HttpResponse<Config>> {
+    return this.http.get<Config>(
+        this.configUrl, { observe: 'response' });
+  }
 }

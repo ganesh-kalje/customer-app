@@ -19,6 +19,11 @@ export class CustomerListComponent implements OnInit {
         .subscribe(data => {
           console.log(data);
         });
+
+    this.configService.getAllDataWithHeaders().subscribe(data => {
+        console.log("With All data");
+        console.log(data);
+    });
   }
 
 }
