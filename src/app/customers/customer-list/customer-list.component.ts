@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {ConfigServiceService} from "../../config-service.service";
 
 @Component({
   selector: 'app-customer-list',
@@ -9,11 +10,15 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class CustomerListComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private configService : ConfigServiceService) { }
 
   ngOnInit() {
-    console.log(this.route);
-    console.log(this.router);
+
+    this.configService.getData()
+        .subscribe(data => {
+          console.log(data);
+        });
   }
 
 }
